@@ -7,7 +7,6 @@ module.exports = {
     "bg-red-500",
     "bg-red-600",
     "bg-red-700",
-    // Add any additional dynamic classes you wish to safelist
   ],
   plugins: [require("daisyui")],
   daisyui: {

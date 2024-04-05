@@ -24,12 +24,10 @@ function Products() {
       title: "Fish",
       description: "Explore the underwater world with this fish coloring book.",
     },
-    // Replicating the above cards to make up 8 cards in total
-    // Ideally, you'd have unique data for each card
     {
       id: 3,
       imgSrc: "./Landscapes.webp",
-      title: "Butterflies",
+      title: "Landscape",
       description: "9 Pages of flower inspired coloring book.",
     },
     {
@@ -38,11 +36,10 @@ function Products() {
       title: "Fish",
       description: "Explore the underwater world with this fish coloring book.",
     },
-    // Adding 4 more cards to create a second row
     {
       id: 5,
       imgSrc: "./Mountain.webp",
-      title: "Flowers",
+      title: "Mountains",
       description: "9 Pages of flower inspired coloring book.",
     },
     {
@@ -74,7 +71,8 @@ function Products() {
             className="card max-w-sm mx-auto bg-base-100 shadow-xl"
           >
             <figure>
-              <img src={card.imgSrc} alt={card.title} />
+              {/* Add loading="lazy" to the img tag */}
+              <img src={card.imgSrc} alt={card.title} loading="lazy" />
             </figure>
             <div className="card-body bg-white dark:bg-gray-700 rounded-b-lg">
               <h2 className="card-title text-gray-900 dark:text-gray-50">
@@ -85,28 +83,26 @@ function Products() {
               </p>
               <div className="flex justify-between items-center w-full">
                 <div className="rating flex gap-1">
-                  {Array.from({ length: 5 }, (_, i) => {
-                    const colorClasses = [
-                      "bg-red-300",
-                      "bg-red-400",
-                      "bg-red-500",
-                      "bg-red-600",
-                      "bg-red-700",
-                    ];
-                    return (
-                      <input
-                        key={`${card.id}-${i}`}
-                        type="radio"
-                        name={`rating-${card.id}`}
-                        className={`mask mask-heart ${colorClasses[i]}`}
-                        value={i + 1}
-                        checked={ratings[card.id] === `${i + 1}`}
-                        onChange={() => updateRating(card.id, i + 1)}
-                      />
-                    );
-                  })}
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <input
+                      key={`${card.id}-${i}`}
+                      type="radio"
+                      name={`rating-${card.id}`}
+                      className={`mask mask-heart ${
+                        [
+                          "bg-red-300",
+                          "bg-red-400",
+                          "bg-red-500",
+                          "bg-red-600",
+                          "bg-red-700",
+                        ][i]
+                      }`}
+                      value={i + 1}
+                      checked={ratings[card.id] === `${i + 1}`}
+                      onChange={() => updateRating(card.id, i + 1)}
+                    />
+                  ))}
                 </div>
-
                 <button className="btn btn-primary dark:bg-blue-500 dark:text-white dark:border-transparent">
                   Buy Now
                 </button>
