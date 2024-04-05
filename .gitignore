@@ -1,9 +1,20 @@
-node_modules
-component.json
-package.json
-postcss.config.json
-tailwind.config.
-tsconfig.json
-vite.config.json
-app
-@
+# Dependency directories
+node_modules/
+
+# Build/output directories
+/dist/
+/build/
+/.next/
+/.nuxt/
+/public/build/
+
+# Environment secrets
+.env
+.env.local
+
+# OS files
+.DS_Store
+
+# Editor directories
+.idea/
+.vscode/

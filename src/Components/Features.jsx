@@ -113,6 +113,46 @@ function Features() {
           </div>
         ))}
       </div>
+      <br />
+
+      <div role="alert" className="alert mt-4 text-left">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          className="stroke-current shrink-0 w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <span className="mt-4 text-sm leading-none">
+          Articles in Early Childhood Education Journal & Journal of
+          Occupational Therapy, Schools, & Early Intervention discuss how
+          coloring activities positively impact fine motor skill development in
+          children. Mihaly Csikszentmihalyi's works on creativity promote the
+          benefits of coloring in fostering creativity. The theories of Jean
+          Piaget and Lev Vygotsky offer insights into how coloring activities
+          contribute to cognitive development through enhancing focus and
+          decision-making skills. Studies in the American Journal of
+          Occupational Therapy demonstrate how coloring activities improve
+          hand-eye coordination. Research in Early Childhood Research Quarterly
+          emphasizes the importance of coloring activities in early childhood
+          development. Developmental psychology literature highlights how
+          structured activities like coloring help children learn about
+          boundaries, rules, and the importance of following guidelines. Art
+          therapy journals, such as Art Therapy: Journal of the American Art
+          Therapy Association, discuss the therapeutic effects of coloring on
+          stress relief and relaxation in children. The American Art Therapy
+          Association encourages self-expression through coloring activities.
+          Research published in the Journal of Early Childhood Literacy
+          emphasizes the role of coloring in preparing children for school by
+          developing pre-writing skills and letter and number recognition.
+        </span>
+      </div>
     </div>
   );
 }
