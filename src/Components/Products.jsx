@@ -1,49 +1,74 @@
 import React, { useState } from "react";
 
-// Example card data
-const cardsData = [
-  {
-    id: 1,
-    title: "Flowers",
-    description: "9 Pages of flower inspired coloring book.",
-    imgSrc: "./Flowers.webp",
-  },
-  {
-    id: 2,
-    title: "Fish",
-    description: "Dive into the deep blue sea with this fish coloring book.",
-    imgSrc: "./Fish.webp",
-  },
-  {
-    id: 3,
-    title: "Mountains",
-    description: "Color the towering mountains and serene landscapes.",
-    imgSrc: "./Flowers.webp",
-  },
-  {
-    id: 4,
-    title: "Cities",
-    description: "Explore cityscapes and urban scenes in this coloring book.",
-    imgSrc: "./Fish.webp",
-  },
-];
-
 function Products() {
-  // Initialize state to track ratings for each card independently, keyed by card id.
   const [ratings, setRatings] = useState({});
 
-  // Handler to update the rating for a specific card
-  const handleRatingChange = (cardId, value) => {
-    setRatings((prevRatings) => ({
-      ...prevRatings,
-      [cardId]: value,
+  const updateRating = (index, rating) => {
+    setRatings((currentRatings) => ({
+      ...currentRatings,
+      [index]: rating,
     }));
   };
+
+  // Expanded cards data for 8 cards
+  const cards = [
+    {
+      id: 1,
+      imgSrc: "./Flowers.webp",
+      title: "Flowers",
+      description: "9 Pages of flower inspired coloring book.",
+    },
+    {
+      id: 2,
+      imgSrc: "./Fish.webp",
+      title: "Fish",
+      description: "Explore the underwater world with this fish coloring book.",
+    },
+    // Replicating the above cards to make up 8 cards in total
+    // Ideally, you'd have unique data for each card
+    {
+      id: 3,
+      imgSrc: "./Flowers.webp",
+      title: "Flowers",
+      description: "9 Pages of flower inspired coloring book.",
+    },
+    {
+      id: 4,
+      imgSrc: "./Fish.webp",
+      title: "Fish",
+      description: "Explore the underwater world with this fish coloring book.",
+    },
+    // Adding 4 more cards to create a second row
+    {
+      id: 5,
+      imgSrc: "./Mountain.webp",
+      title: "Flowers",
+      description: "9 Pages of flower inspired coloring book.",
+    },
+    {
+      id: 6,
+      imgSrc: "./Fish.webp",
+      title: "Fish",
+      description: "Explore the underwater world with this fish coloring book.",
+    },
+    {
+      id: 7,
+      imgSrc: "./Flowers.webp",
+      title: "Flowers",
+      description: "9 Pages of flower inspired coloring book.",
+    },
+    {
+      id: 8,
+      imgSrc: "./Fish.webp",
+      title: "Fish",
+      description: "Explore the underwater world with this fish coloring book.",
+    },
+  ];
 
   return (
     <div className="container mx-auto p-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {cardsData.map((card) => (
+        {cards.map((card, index) => (
           <div
             key={card.id}
             className="card max-w-sm mx-auto bg-base-100 shadow-xl"
@@ -58,24 +83,19 @@ function Products() {
               <p className="leading-none text-gray-900 dark:text-gray-200">
                 {card.description}
               </p>
-
               <div className="flex justify-between items-center w-full">
                 <div className="rating flex gap-1">
-                  {["300", "400", "500", "600", "700"].map(
-                    (color, colorIndex) => (
-                      <input
-                        key={color}
-                        type="radio"
-                        name={`rating-${card.id}`}
-                        className={`mask mask-heart bg-red-${color}`}
-                        value={colorIndex + 1} // Value assigned based on color index for simplicity
-                        checked={ratings[card.id] === `${colorIndex + 1}`} // Check if this radio button should be checked based on the card's rating state
-                        onChange={() =>
-                          handleRatingChange(card.id, `${colorIndex + 1}`)
-                        } // Handle change to update the specific card's rating
-                      />
-                    )
-                  )}
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <input
+                      key={`${card.id}-${i}`}
+                      type="radio"
+                      name={`rating-${card.id}`}
+                      className={`mask mask-heart bg-red-${300 + i * 100}`}
+                      value={i + 1}
+                      checked={ratings[card.id] === `${i + 1}`}
+                      onChange={() => updateRating(card.id, i + 1)}
+                    />
+                  ))}
                 </div>
                 <button className="btn btn-primary dark:bg-blue-500 dark:text-white dark:border-transparent">
                   Buy Now

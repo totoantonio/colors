@@ -1,0 +1,7 @@
+node_modules
+component.json
+package.json
+postcss.config.json
+tailwind.config.
+tsconfig.json
+vite.config.json
