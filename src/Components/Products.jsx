@@ -28,8 +28,8 @@ function Products() {
     // Ideally, you'd have unique data for each card
     {
       id: 3,
-      imgSrc: "./Flowers.webp",
-      title: "Flowers",
+      imgSrc: "./Landscapes.webp",
+      title: "Butterflies",
       description: "9 Pages of flower inspired coloring book.",
     },
     {
