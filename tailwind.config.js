@@ -1,12 +1,15 @@
-import daisyui from "node_modules/daisyui";
-
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  safelist: [
+    // Safelisting classes for heart colors
+    "bg-red-300",
+    "bg-red-400",
+    "bg-red-500",
+    "bg-red-600",
+    "bg-red-700",
+    // Add any additional dynamic classes you wish to safelist
+  ],
   plugins: [require("daisyui")],
-  daisyui: {
-    themes: ["light", "dark"],
-    extend: {},
-  },
   daisyui: {
     themes: false,
     darkTheme: "dark",
@@ -16,5 +19,6 @@ module.exports = {
     prefix: "",
     logs: true,
     themeRoot: ":root",
+    extend: {},
   },
 };

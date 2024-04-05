@@ -85,18 +85,28 @@ function Products() {
               </p>
               <div className="flex justify-between items-center w-full">
                 <div className="rating flex gap-1">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <input
-                      key={`${card.id}-${i}`}
-                      type="radio"
-                      name={`rating-${card.id}`}
-                      className={`mask mask-heart bg-red-${300 + i * 100}`}
-                      value={i + 1}
-                      checked={ratings[card.id] === `${i + 1}`}
-                      onChange={() => updateRating(card.id, i + 1)}
-                    />
-                  ))}
+                  {Array.from({ length: 5 }, (_, i) => {
+                    const colorClasses = [
+                      "bg-red-300",
+                      "bg-red-400",
+                      "bg-red-500",
+                      "bg-red-600",
+                      "bg-red-700",
+                    ];
+                    return (
+                      <input
+                        key={`${card.id}-${i}`}
+                        type="radio"
+                        name={`rating-${card.id}`}
+                        className={`mask mask-heart ${colorClasses[i]}`}
+                        value={i + 1}
+                        checked={ratings[card.id] === `${i + 1}`}
+                        onChange={() => updateRating(card.id, i + 1)}
+                      />
+                    );
+                  })}
                 </div>
+
                 <button className="btn btn-primary dark:bg-blue-500 dark:text-white dark:border-transparent">
                   Buy Now
                 </button>
