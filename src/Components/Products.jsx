@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 
 function Products() {
-  const [ratings, setRatings] = useState({});
-
-  const updateRating = (index, rating) => {
-    setRatings((currentRatings) => ({
-      ...currentRatings,
-      [index]: rating,
-    }));
-  };
-
   // Expanded cards data for 8 cards
   const cards = [
     {
@@ -71,7 +62,6 @@ function Products() {
             className="card max-w-sm mx-auto bg-base-100 shadow-xl"
           >
             <figure>
-              {/* Add loading="lazy" to the img tag */}
               <img src={card.imgSrc} alt={card.title} loading="lazy" />
             </figure>
             <div className="card-body bg-white dark:bg-gray-700 rounded-b-lg">
@@ -81,28 +71,7 @@ function Products() {
               <p className="leading-none text-gray-900 dark:text-gray-200">
                 {card.description}
               </p>
-              <div className="flex justify-between items-center w-full">
-                <div className="rating flex gap-1">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <input
-                      key={`${card.id}-${i}`}
-                      type="radio"
-                      name={`rating-${card.id}`}
-                      className={`mask mask-heart ${
-                        [
-                          "bg-red-300",
-                          "bg-red-400",
-                          "bg-red-500",
-                          "bg-red-600",
-                          "bg-red-700",
-                        ][i]
-                      }`}
-                      value={i + 1}
-                      checked={ratings[card.id] === `${i + 1}`}
-                      onChange={() => updateRating(card.id, i + 1)}
-                    />
-                  ))}
-                </div>
+              <div className="flex justify-end items-center w-full">
                 <button className="btn btn-primary dark:bg-blue-500 dark:text-white dark:border-transparent">
                   Buy Now
                 </button>
