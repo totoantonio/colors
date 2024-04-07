@@ -1,20 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./Components/App.jsx";
+import { BrowserRouter as Router } from "react-router-dom";
+import { UserProvider } from "./UserContext.jsx"; // Adjust the path as necessary
+import App from "./Components/App";
+import Navbar from "./Components/Navbar";
+import Stats from "./Components/Stats";
+import Footer from "./Components/footer"; // Ensure the filename matches the case sensitivity
+import Features from "./Components/Features";
+import Products from "./Components/Products";
 import "./index.css";
-import Navbar from "./Components/Navbar.jsx";
-import Stats from "./Components/Stats.jsx";
-import Footer from "./Components/footer.jsx";
-import Features from "./Components/Features.jsx";
-import Products from "./Components/Products.jsx";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Navbar />
-    <App />
-    <Products />
-    <Features />
-
-    <Footer />
-  </React.StrictMode>
-);
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <Router>
+        <UserProvider>
+          <Navbar />
+          <App />
+          <Products />
+          <Features />
+          <Stats />
+          <Footer />
+        </UserProvider>
+      </Router>
+    </React.StrictMode>
+  );
+}

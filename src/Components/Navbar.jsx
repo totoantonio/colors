@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { auth } from "/FirebaseConfig";
+import { Link } from "react-router-dom";
+import { signInWithGoogle } from "/FirebaseConfig";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
+  const [user, setUser] = useState(null); // Add a state to keep track of the user's authentication status
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user); // Update the user state based on the authenticated user
+    });
+
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+
+    return () => unsubscribe(); // Clean up the subscription
+  }, [theme]);
 
   const handleToggle = (e) => {
     if (e.target.checked) {
@@ -12,12 +28,6 @@ const Navbar = () => {
       setTheme("light");
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
 
   return (
     <div className="navbar bg-base-100">
@@ -58,37 +68,45 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-              />
-            </div>
+        {/* Show user profile or sign-in button based on authentication status */}
+        {user ? (
+          // User is signed in
+          <div className="dropdown dropdown-end">
+            <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  src={
+                    user.photoURL ||
+                    "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                  }
+                  alt="Avatar"
+                />
+              </div>
+            </label>
+            <ul
+              tabIndex="0"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>Profile</a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        ) : (
+          // Optional: User is not signed in
+          <a
+            onClick={signInWithGoogle}
+            className="text-xl font-bold cursor-pointer hover:text-blue-500 px-5"
           >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+            Sign in
+          </a>
+        )}
       </div>
       <label className="swap swap-rotate pr-5">
         <input
