@@ -1,6 +1,6 @@
 // src/contexts/UserContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { auth } from "../FirebaseConfig"; // Update this path if your FirebaseConfig file is located elsewhere
+import { auth } from "/FirebaseConfig"; // Update this path if your FirebaseConfig file is located elsewhere
 
 const UserContext = createContext();
 

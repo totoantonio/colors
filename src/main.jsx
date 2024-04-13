@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { UserProvider } from "./UserContext.jsx"; // Adjust the path as necessary
 import App from "./Components/App";
 import Navbar from "./Components/Navbar";
-import Stats from "./Components/Stats";
 import Footer from "./Components/footer"; // Ensure the filename matches the case sensitivity
 import Features from "./Components/Features";
 import Products from "./Components/Products";
@@ -20,7 +19,7 @@ if (rootElement) {
           <App />
           <Products />
           <Features />
-          <Stats />
+
           <Footer />
         </UserProvider>
       </Router>

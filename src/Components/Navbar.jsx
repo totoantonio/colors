@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "/FirebaseConfig";
 import { Link } from "react-router-dom";
-import { signInWithGoogle } from "/FirebaseConfig";
+import { signInWithGoogle, signOut } from "/FirebaseConfig";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
@@ -26,6 +26,16 @@ const Navbar = () => {
       setTheme("dark");
     } else {
       setTheme("light");
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(); // Assuming signOut() is a function that correctly signs the user out
+      setUser(null); // Reset user context to null after logout
+      console.log("User signed out successfully");
+    } catch (error) {
+      console.error("Error signing out: ", error);
     }
   };
 
@@ -93,7 +103,7 @@ const Navbar = () => {
               <li>
                 <a>Settings</a>
               </li>
-              <li>
+              <li onClick={handleLogout}>
                 <a>Logout</a>
               </li>
             </ul>
@@ -102,7 +112,7 @@ const Navbar = () => {
           // Optional: User is not signed in
           <a
             onClick={signInWithGoogle}
-            className="text-xl font-bold cursor-pointer hover:text-blue-500 px-5"
+            className="text-gray-900 dark:text-gray-200  cursor-pointer hover:text-blue-500 px-5"
           >
             Sign in
           </a>

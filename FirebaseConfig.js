@@ -1,7 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth"; // Import additional required functions
-
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  signOut as firebaseSignOut,
+} from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY,
@@ -25,3 +29,4 @@ const signInWithGoogle = () => {
 
 // Export both the auth object and the signInWithGoogle function
 export { auth, signInWithGoogle };
+export const signOut = () => firebaseSignOut(auth);
