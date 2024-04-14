@@ -29,7 +29,6 @@ function Features() {
       </h1>
       <br />
       <div className="join join-vertical w-full">
-        {/* Mapping through the array to dynamically create feature sections */}
         {[
           {
             title: "Enhances Motor Skills",
@@ -88,7 +87,7 @@ function Features() {
           >
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium">
-              <h1 className="flex items-center font-bold gap-2">
+              <h1 className="flex items-center  gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
