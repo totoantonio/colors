@@ -1,6 +1,6 @@
 import React from "react";
 
-function App() {
+function Header({ scrollToProducts }) {
   return (
     <div className="hero min-h-screen bg-base-100">
       <div className="hero-content flex-col lg:flex-row">
@@ -21,11 +21,13 @@ function App() {
             Embark on a colorful journey that transforms blank pages into
             masterpieces.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="btn btn-primary" onClick={scrollToProducts}>
+            Get Started
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-export default App;
+export default Header;
