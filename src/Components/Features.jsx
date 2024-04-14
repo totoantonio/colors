@@ -51,12 +51,12 @@ function Features() {
               "Coloring requires children to color within specified areas, which improves hand-eye coordination. This skill is essential in developing good handwriting, as well as other activities where precision is important.",
           },
           {
-            title: "Encourages Color Recognition and Use",
+            title: "Encourages Color Recognition",
             description:
               "As children pick and apply color, they learn to recognize the names and shades of colors. Coloring is one of the initial exposures children have to colors and the concept of mixing colors to make new ones, laying a foundation for understanding color theory.",
           },
           {
-            title: "Provides a Basis for Understanding Boundaries",
+            title: "Basis for Understanding Boundaries",
             description:
               "Coloring within the lines is a preliminary exercise in understanding boundaries and respecting limits. This seemingly simple skill can translate to respecting rules and guidelines in other areas of life.",
           },
