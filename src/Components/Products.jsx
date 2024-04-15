@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
   const cards = [
@@ -52,10 +53,16 @@ function Products() {
     },
   ];
 
+  const navigate = useNavigate();
+
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <div className="container mx-auto p-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {cards.map((card, index) => (
+        {cards.map((card) => (
           <div
             key={card.id}
             className="card max-w-sm mx-auto bg-base-100 shadow-xl"
@@ -71,8 +78,11 @@ function Products() {
                 {card.description}
               </p>
               <div className="flex justify-end items-center w-full">
-                <button className="btn btn-primary dark:bg-blue-500 dark:text-white dark:border-transparent">
-                  Buy Now
+                <button
+                  className="btn btn-primary dark:bg-blue-500 dark:text-white dark:border-transparent"
+                  onClick={() => handleProductClick(card.id)}
+                >
+                  More Info
                 </button>
               </div>
             </div>
