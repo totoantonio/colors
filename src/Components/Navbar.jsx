@@ -11,14 +11,14 @@ const Navbar = () => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user); // Update the user state based on the authenticated user
+      setUser(user);
     });
 
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
 
-    return () => unsubscribe(); // Clean up the subscription
+    return () => unsubscribe();
   }, [theme]);
 
   const handleToggle = (e) => {
@@ -78,9 +78,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        {/* Show user profile or sign-in button based on authentication status */}
+
         {user ? (
-          // User is signed in
           <div className="dropdown dropdown-end">
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">

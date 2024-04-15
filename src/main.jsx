@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
-import { UserProvider } from "./UserContext.jsx"; // Adjust the path as necessary
+import { UserProvider } from "./UserContext.jsx";
 import Header from "./Components/App";
 import Navbar from "./Components/Navbar";
-import Footer from "./Components/footer"; // Ensure the filename matches the case sensitivity
+import Footer from "./Components/footer";
 import Features from "./Components/Features";
 import Products from "./Components/Products";
 import "./index.css";
@@ -14,7 +14,7 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
 
   const App = () => {
-    const productsRef = useRef(null); // Create a ref for the Products component
+    const productsRef = useRef(null);
 
     return (
       <React.StrictMode>
