@@ -41,12 +41,12 @@ function Features() {
               "Coloring encourages kids to experiment with color, patterns, and designs, fostering their creative thought processes. It allows them to express their individuality and imagination through the choices they make on the page, which can translate to enhanced creativity in other aspects of life.",
           },
           {
-            title: "Facilitates Cognitive Development",
+            title: "Cognitive Development",
             description:
               "Through coloring, children learn the skill of patience and learn to focus on details as they concentrate on completing their picture. This attention to detail helps develop their cognitive skills by improving their ability to focus, make decisions, and apply logic to color selection and how it relates to the intended outcome of their artwork.",
           },
           {
-            title: "Improves Hand-Eye Coordination",
+            title: "Hand-Eye Coordination",
             description:
               "Coloring requires children to color within specified areas, which improves hand-eye coordination. This skill is essential in developing good handwriting, as well as other activities where precision is important.",
           },
@@ -56,7 +56,7 @@ function Features() {
               "As children pick and apply color, they learn to recognize the names and shades of colors. Coloring is one of the initial exposures children have to colors and the concept of mixing colors to make new ones, laying a foundation for understanding color theory.",
           },
           {
-            title: "Basis for Understanding Boundaries",
+            title: "Understanding Boundaries",
             description:
               "Coloring within the lines is a preliminary exercise in understanding boundaries and respecting limits. This seemingly simple skill can translate to respecting rules and guidelines in other areas of life.",
           },
