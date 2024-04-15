@@ -6,7 +6,7 @@ function Products() {
       id: 1,
       imgSrc: "./Flowers.webp",
       title: "Flowers",
-      description: "9 Pages of flower inspired coloring book.",
+      description: "15 Pages of flower inspired coloring book.",
     },
     {
       id: 2,
