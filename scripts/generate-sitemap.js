@@ -4,13 +4,13 @@ import { resolve } from "path";
 
 // Define the list of routes for your site
 const routes = [
-  { url: "/", changefreq: "daily", priority: 1.0 },
-  { url: "/about", changefreq: "monthly", priority: 0.7 },
-  { url: "/contact", changefreq: "monthly", priority: 0.6 },
+  { url: "/colors", changefreq: "daily", priority: 1.0 },
+  { url: "colors/about", changefreq: "monthly", priority: 0.7 },
+  { url: "colors/contact", changefreq: "monthly", priority: 0.6 },
   // Add other routes as needed
 ];
 
-// Create a sitemap stream with your site's hostname
+// Create a sitemap stream with the corrected site's hostname
 const sitemap = new SitemapStream({
   hostname: "https://totoantonio.github.io/colors/",
 });
