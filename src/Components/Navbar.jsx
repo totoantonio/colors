@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "/FirebaseConfig";
 import { Link } from "react-router-dom";
-import { signInWithGoogle, signOut } from "/FirebaseConfig";
+import {
+  auth,
+  signInWithGoogle,
+  signOutUser as signOut,
+} from "/FirebaseConfig";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
-  const [user, setUser] = useState(null); // Add a state to keep track of the user's authentication status
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
     });
 
     localStorage.setItem("theme", theme);
@@ -29,14 +32,17 @@ const Navbar = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await signOut(); // Assuming signOut() is a function that correctly signs the user out
-      setUser(null); // Reset user context to null after logout
-      console.log("User signed out successfully");
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful logic (e.g., redirect to login page)
+        console.log("User signed out successfully!");
+        setUser(null); // Update user state after successful logout
+      })
+      .catch((error) => {
+        // Handle sign-out errors
+        console.error("Error signing out:", error);
+      });
   };
 
   return (
@@ -85,7 +91,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full">
                 <img
                   src={
-                    user.photoURL ||
+                    user?.photoURL ||
                     "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
                   }
                   alt="Avatar"
@@ -112,6 +118,8 @@ const Navbar = () => {
           <a
             onClick={signInWithGoogle}
             className="text-gray-900 dark:text-gray-200  cursor-pointer hover:text-blue-500 px-5"
+            role="button"
+            aria-label="Sign in with Google"
           >
             Sign in
           </a>

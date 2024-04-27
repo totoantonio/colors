@@ -1,11 +1,11 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithRedirect,
-  signOut as firebaseSignOut,
+  signOut,
 } from "firebase/auth";
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY,
@@ -17,16 +17,28 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // Initialize Firebase Authentication
-
-// Define the signInWithGoogle function
+// Initialize Firebase with only authentication
+const app = initializeApp(firebaseConfig, {
+  /* only Auth */
+});
+const auth = getAuth(app);
+// Function for Google Sign-in with redirect
 const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithRedirect(auth, provider);
 };
 
-// Export both the auth object and the signInWithGoogle function
-export { auth, signInWithGoogle };
-export const signOut = () => firebaseSignOut(auth);
+// Function for signing out the user
+const signOutUser = () => {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful logic (e.g., redirect to login page)
+      console.log("User signed out successfully!");
+    })
+    .catch((error) => {
+      // Handle sign-out errors
+      console.error("Error signing out:", error);
+    });
+};
+
+export { auth, signInWithGoogle, signOutUser };
