@@ -7,42 +7,30 @@ import {
 } from "/FirebaseConfig";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-      setUser(currentUser);
-    });
+    const unsubscribe = auth.onAuthStateChanged(setUser);
+    document.querySelector("html").setAttribute("data-theme", theme);
 
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-
-    return () => unsubscribe();
+    return unsubscribe;
   }, [theme]);
 
   const handleToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+    const newTheme = e.target.checked ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful logic (e.g., redirect to login page)
-        console.log("User signed out successfully!");
-        setUser(null); // Update user state after successful logout
-      })
-      .catch((error) => {
-        // Handle sign-out errors
-        console.error("Error signing out:", error);
-      });
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully!");
+      setUser(null);
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   return (
@@ -117,7 +105,9 @@ const Navbar = () => {
           // Optional: User is not signed in
           <a
             onClick={signInWithGoogle}
-            className="text-gray-900 dark:text-gray-200  cursor-pointer hover:text-blue-500 px-5"
+            className={`text-gray-900 cursor-pointer hover:text-blue-500 px-5 ${
+              theme === "dark" ? "text-white" : ""
+            }`}
             role="button"
             aria-label="Sign in with Google"
           >
